@@ -8,5 +8,14 @@ $days = array (
 "saturday" => "samedi",
 "sunday" => "dimanche"
 );
-
+$daysFr = array(
+    "lundi", "mardi" , "mercredi" ,
+    "jeudi" , "wendredi" , "samedi" ,
+    "dimanche"
+);
+$daysEn = array(
+    "monday" , "tuesday" , "wendnesday" ,
+    "thursday" , "friday" , "saturday" ,
+    "sunday"
+);
 ?>
