@@ -38,7 +38,7 @@ foreach ($stock as $produit => $detail) {
     $produitTriee[$produit] = $detail["prix"];
     if ($detail["stock"] < 6) {
         $produitInfSix[$produit] = $detail["stock"];
-    }
+    }  
 }
 echo "<h4>Le produit le plus Cher : <span style='color:red;'> $produitPlusCher </span> Avec un prix : $cher </h4>";
 echo "<h4>Le produit Avec le Stock le plus Faible : <span style='color:red;'> $produitStockFaible </span> Avec un Stock : $stockPlusFaible </h4>";

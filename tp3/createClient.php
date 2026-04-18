@@ -1,0 +1,90 @@
+<?php
+require('./config/session.php'); 
+require_once './config/connexion.php';
+
+if (!empty($_POST)) {
+
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $dateN = $_POST['dateN'];
+    $adresse = $_POST['adresse'];
+    $tel = $_POST['tel'];
+
+    $sql = "INSERT INTO client (nom, prenom, datenaissance, adresse, tel)
+            VALUES (?, ?, ?, ?, ?)";
+
+    $stmt = $con->prepare($sql);
+    $result = $stmt->execute([$nom, $prenom, $dateN, $adresse, $tel]);
+
+    if ($result) {
+    header("Location: clients.php");
+    exit;
+    } else {
+        echo "<div class='alert alert-danger'>Erreur insertion</div>";
+    }
+}
+?>
+
+
+
+          
+    <?php
+          $title = "Nouveau client";
+
+      include 'base/template/header.php';
+      ?>
+    <div class="container">
+
+        <fieldset>
+            <legend><h2>Nouveau Client</h2></legend>
+            <hr>
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+                <div class="row mb-1">
+                    <label class="col-sm-2 col-form-label" for="nom">Nom</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom du client">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label class="col-sm-2 col-form-label" for="prenom">Prénom</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom du client">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label class="col-sm-2 col-form-label" for="dateN">Date de naissance</label>
+                    <div class="col-sm-7">
+                        <input type="date" name="dateN" class="form-control" id="dateN" placeholder="Date de naissance">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label class="col-sm-2 col-form-label" for="adresse">Adresse</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="adresse" class="form-control" id="adresse" placeholder="Adresse">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <label class="col-sm-2 col-form-label" for="tel">Téléphone</label>
+                    <div class="col-sm-7">
+                        <input type="tel" name="tel" class="form-control" id="tel" placeholder="Numéro de téléphone">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" required>
+                            <label class="form-check-label"> Contrat lu et accepté</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" name="btValider" class="btn btn-primary">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+        <?php
+      include 'base/template/footer.php';
+      ?>
